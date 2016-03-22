@@ -1,4 +1,7 @@
 # Homepage (Root path)
+# Time.zone = 'Pacific Time (US & Canada)'
+# ActiveRecord::Base.default_timezone = :pacfic
+
 get '/' do
   erb :index
 end
@@ -14,9 +17,10 @@ end
 
 post '/messages' do
   @message = Message.new(
-    title: params[:title],
+    # title: params[:title],
     content: params[:content],
-    author: params[:author]
+    author: params[:author],
+    url: params[:url]
     )
   if @message.save
     redirect '/messages'
@@ -28,4 +32,9 @@ end
 get '/messages/:id' do
   @message = Message.find params[:id]
   erb :'show'
+end
+
+get '/show/:userid' do
+  @messages = Message.where(:author => params[:userid])
+  erb :authormessages
 end

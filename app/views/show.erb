@@ -1,11 +1,25 @@
-<h1><%= @message.title %><h1>
+<!-- <h1><%= @message.title %><h1> -->
+<!-- UTC or not? <%= @message.created_at %> -->
 
 <p>
   Author: <%= @message.author %>
 </p>
+<!-- http://api.rubyonrails.org/v2.3/classes/ActiveSupport/CoreExtensions/Time/Conversions.html -->
+<p>
+  Created At: <%= @message.created_at %>
+</p>
 
 <p>
   <%= @message.content %>
+</p>
+
+<p>
+  <%= @message.url %>
+</p>
+
+<p>
+  Other Posts from this author: 
+  <a href="/show/<%= @message.author %>">Show</a>
 </p>
 
 <hr/>
